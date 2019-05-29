@@ -1,0 +1,166 @@
+/* #root{
+    width: 100%;
+    height: 65%;
+}
+html{
+    width: 100%;
+    height: 1113.4px;
+}
+body{
+    height: 100%;
+    
+}
+.page{
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;;
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
+}
+
+.mainForm{
+    height: 100%;
+    background: #FFFFFF;
+    width: 40%;
+    border-radius: 1px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border-radius: 16px;
+}
+
+#text{
+    height: 11%;
+    margin-top: 60px;
+}
+#centerText{
+    font-family: Lato;
+    font-size: 38px;
+    line-height: 32px;
+    text-align: center;
+    text-transform: capitalize;
+
+    color: #4F4F4F;
+}
+
+#centerSlogan{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 20px;
+    
+
+    text-align: center;
+
+    color: #828282;
+}
+#signinOption{
+    width: 80%;
+    
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.bigBox{
+    margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 60%;
+    box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+}
+::placeholder{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    color: #BDBDBD;
+}
+#signinPassword{
+    padding: 0px;
+    margin-top: 0px;
+    padding-left: 16px;
+    width: 100%;
+    height: 50%;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+#signinEmail{
+    padding-left: 16px;
+    width: 100%;
+    height: 50%;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+#emailField{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    padding: 0px;
+    padding:0px;
+    height: min-content;
+}
+#passField{
+    margin-top: 0px;
+    padding: 0px;
+    height: min-content;
+}
+#signinButton{
+    background: #35CE97;
+    border-radius: 30px;
+    width: 100%;
+    height: 60px;
+    border: 1px solid #35CE97;
+    box-sizing: border-box;
+    font-family: Lato;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #F2F2F2;
+}
+
+.signinField{
+    background: #FFFFFF;
+    width: 80%;
+    height: 30%;
+    padding: 0px;
+    margin-top: 20px;
+}
+
+.forgot{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+
+    text-align: right;
+
+    color: #35CE97;
+}
+
+.remember{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    color: #828282;
+}
+
+.signinText{
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 130%;
+    padding: 0px;
+    color: #4F4F4F;
+} */
