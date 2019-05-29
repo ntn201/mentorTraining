@@ -26,6 +26,17 @@ async function writeUserData(userId, name, email) {
   }
 }
 
+async function putFiles(file,id){
+  var ref = firebase.storage().ref("product/" + id +"/" + file.name);
+
+  await ref.put(file).then(function (){
+    ref.getDownloadURL().then(function (url){
+      console.log(url);
+      return url;
+    });
+  });
+}
+
 var firebaseConfig = {
     apiKey: "AIzaSyDqyfKDNNukvQ6GxxgcgWbiBFJvvrOg3P4",
     authDomain: "code-camp-2019.firebaseapp.com",
@@ -40,61 +51,63 @@ firebase.initializeApp(firebaseConfig);
 route.base("/");
 route("/upload",async () => {
     var user = await firebase.auth().currentUser;
-    // console.log(user);
-    if (user){
-      riot.mount("#root","upload");
-      var sellButton = document.getElementById("sellButton");
-      sellButton.addEventListener('click', async (e) => {
-        // const ref = firebase.firestore().collection("test").doc();
-        // console.log(ref.id);
-        // ref.set({id: ref.id}).then(() => {
-        //   ref.get().then(doc => {
-        //     console.log(doc.data());
-        //     })
-        //   })
-        // const r
-        e.preventDefault();
-        const upLoadTitle = document.getElementById("upLoadTitle").value
-
-        const upLoadPhoto1 = document.getElementById("upLoadPhoto1").files;
-        const upLoadPhoto2 = document.getElementById("upLoadPhoto2").files;
-        const upLoadPhoto3 = document.getElementById("upLoadPhoto3").files;
-        const upLoadPrice = document.getElementById("upLoadPrice").value;
-        const option = document.getElementById("upLoadCategory");
-        const upLoadCategory = option.options[option.selectedIndex].text;
-        const upLoadItem = document.getElementById("upLoadItem").value;
-        const upLoadReason = document.getElementById("upLoadReason").value;
-        console.log(upLoadTitle);
-        // console.log(upLoadPhoto);
-        console.log(upLoadPrice);
-        console.log(upLoadCategory);
-        console.log(upLoadItem);
-        console.log(upLoadReason);
-        firebase.firestore().collection("product").doc().set({
-          title: upLoadTitle,
-          // photo1: upLoadPhoto1,
-          // photo2: upLoadPhoto2,
-          // photo3: upLoadPhoto3,
-          price: upLoadPrice,
-          option: upLoadCategory,
-          item: upLoadItem,
-          reason: upLoadReason
+    firebase.auth().onAuthStateChanged(function (user){
+      if (user){
+        riot.mount("#root","upload");
+        var sellButton = document.getElementById("sellButton");
+        sellButton.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const upLoadTitle = document.getElementById("upLoadTitle").value
+          const upLoadPhoto1 = document.getElementById("upLoadPhoto1").files[0];
+          const upLoadPhoto2 = document.getElementById("upLoadPhoto2").files[0];
+          const upLoadPhoto3 = document.getElementById("upLoadPhoto3").files[0];
+          const upLoadPrice = document.getElementById("upLoadPrice").value;
+          const option = document.getElementById("upLoadCategory");
+          const upLoadCategory = option.options[option.selectedIndex].text;
+          const upLoadItem = document.getElementById("upLoadItem").value;
+          const upLoadReason = document.getElementById("upLoadReason").value;
+          const ref = firebase.firestore().collection("product").doc()
+          var photoURL1 = putFiles(upLoadPhoto1,ref.id);
+          if (upLoadPhoto2){
+            var photoURL2 = putFiles(upLoadPhoto2,ref.id);
+          }
+          else{
+            var photoURL2 = "";
+          }
+          if(upLoadPhoto3){
+            var photoURL3 = putFiles(upLoadPhoto3,ref.id);
+          }
+          else{
+            var photoURL3 = "";
+          }
+          console.log(photoURL1);
+          ref.set({
+            title: upLoadTitle,
+            photo1: photoURL1,
+            photo2: photoURL2,
+            photo3: photoURL3,
+            price: upLoadPrice,
+            option: upLoadCategory,
+            item: upLoadItem,
+            reason: upLoadReason
+          });
         });
-      });
-    }
-    else{
-      // console.log(user);
-      riot.mount("#root","account");
-      var signInButton = document.getElementById("signInButton");
-      var signUpButton = document.getElementById("signUpButton");
-      signInButton.addEventListener('click', () => {
-        route("/signin");
-      });
-      signUpButton.addEventListener('click', () => {
-        route("/signup");
-      });
-    }
+      }
+      else{
+        // console.log(user);
+        riot.mount("#root","account");
+        var signInButton = document.getElementById("signInButton");
+        var signUpButton = document.getElementById("signUpButton");
+        signInButton.addEventListener('click', () => {
+          route("/signin");
+        });
+        signUpButton.addEventListener('click', () => {
+          route("/signup");
+        });
+      }
+    })
 });
+
 route("/signin", () => {
     // var user = firebase.auth().currentUser;
     // console.log(user);

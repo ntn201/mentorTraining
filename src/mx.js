@@ -4,6 +4,7 @@ import shortid from 'shortid';
 
 const putFiles = (files) => {
   var ref = firebase.storage().ref();
+  console.log(ref);
   return Promise.all(
     Object.values(files).map(function (file) {
       return ref
