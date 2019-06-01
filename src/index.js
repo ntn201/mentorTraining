@@ -28,14 +28,15 @@ async function writeUserData(userId, name, email) {
 
 async function putFiles(file,id){
   var ref = firebase.storage().ref("product/" + id +"/" + file.name);
-
   await ref.put(file).then(function (){
-    ref.getDownloadURL().then(function (url){
-      console.log(url);
-      return url;
+     var returnVal;
+    await ref.put(file).then(async function (){
+      await ref.getDownloadURL().then(function (url){
+          returnVal = url;
+      });
     });
-  });
-}
+  return returnVal;
+  };
 
 var firebaseConfig = {
     apiKey: "AIzaSyDqyfKDNNukvQ6GxxgcgWbiBFJvvrOg3P4",
